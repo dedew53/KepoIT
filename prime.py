@@ -23,3 +23,5 @@ def prime(bilangan):
             return"not prime"
 tes= prime(10)
 print (tes)
+
+#wkwkwkwkw
