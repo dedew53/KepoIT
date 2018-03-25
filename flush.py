@@ -1,32 +1,17 @@
-deck=["2","3","4","5","6","7","8","9","10","J","Q","K","As"],["L","S","W","K"]
-
+deck=["2s","2w","2a","2k","3s","3w","3a","3k","4s","4w","4a","4k","5s","5w","5a","5k",
+  "6s","6w","6a","6k","7s","7w","7a","7k","8s","8w","8a","8k","9s","9w","9a","9k",
+  "10s","10w","10a","10k","Js","Jw","Ja","Jk","Qs","Qw","Qa","Qk","Ks","Kw","Ka","Kk",
+   "As","Aw","Aa","Ak"
+  ]
 increment=0
 
 
-for i in range(13):
-    for j in range(0,10,2):
-        print(deck[0][j],end='')
-        print(deck[1][i],end=' ')
+masukin=[]
+for i in range(20):
+    for j in range(i,i+40,8):
+        masukin.append(deck[j])
         increment+=1
 
-    print()
+    print(masukin)
+    masukin.clear()
 print("kombinasi", increment)
-
-for i in range(13):
-    for j in range(0, 10, 2):
-        print(deck[0][j], end='')
-        print(deck[1][i], end=' ')
-        increment += 1
-
-    print()
-print("kombinasi", increment)
-
-# for i in range (52):
-#     for j in range(i,i+21,1):
-#         masukin.append(deck[j])
-#         if(masukin[i][0]- deck[j][0]==abs(1)):
-#             masukin.append(deck[j])
-#         print (masukin)
-#
-#     increment +=1
-#     masukin.clear()
