@@ -20,7 +20,7 @@ def aman(maze, x, y):
 def pecahkan(maze):
     #matrix 8x8
     sol = [[0 for j in range(8)] for i in range(8)]
-
+    #titik mulai
     if sebelumdipecahkan(maze, 0, 1, sol) == False:
         print("Solusi tidak ada")
         return False
@@ -31,7 +31,7 @@ def pecahkan(maze):
 
 #fungsi untuk cek langkah
 def sebelumdipecahkan(maze, x, y, sol):
-    #titik koordinat mulai dan finish
+    #titik koordinat finish
     if x == N - 2 and y == N - 4:
         sol[x][y] = 1
         return True
