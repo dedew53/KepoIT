@@ -43,7 +43,15 @@ public class Main {
         UserDAOimpl instance = new UserDAOimpl();
         User result = instance.getLogin(Username,Password);
         
-        System.out.println(result.getId());  
+        System.out.println(result.getId()); 
+        
+         // Tambah clap di user
+//        Answer a = adao.getById(1);
+//        Question q = qdao.getById(1);
+//        User u = usdo.getById(1);
+//        u.setRating(a.getClapAnswer()+q.getClapQuestion());
+//        usdo.tambahclap(u);
         
     }
+    
 }
