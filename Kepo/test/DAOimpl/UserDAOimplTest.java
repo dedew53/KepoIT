@@ -67,36 +67,85 @@ public class UserDAOimplTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
-    /**
-     * Test of getLogin method, of class UserDAOimpl.
-     */
-    @Test
-//    public void testGetLogin() {
-//        System.out.println("getLogin");
-//        String Username = "ojik";
-//        String Password = "123456";
-//        UserDAOimpl instance = new UserDAOimpl();
-//        User expResult = null;
-//        User result = instance.getLogin(Username, Password);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    
-//    }
-//    public void testGetLogin() {        
-//    System.out.println("getLogin");
-//        String Username="ojik12";
-//        String Password="123456";
-//        UserDAOimpl instance = new UserDAOimpl();
-//        User result = instance.getLogin(Username,Password);
+@Test	
+    public void TestgetLogin() throws NoSuchAlgorithmException {        
+    System.out.println("getLogin");
+        String username="ojik12";
+        String password="123456";
+        UserDAOimpl instance = new UserDAOimpl();
+        User result = null;
+        boolean exist = instance.getExistUsername(username);
+        if(exist==true){
+            result=instance.getLogin(username, password);
+            if (result==null){
+                fail("password salah");
+            }
+            assertNotNull(result);
+        }else{
+            fail("username tidak ada");
+        }
+        
+       
+   }  
+ //    @Test
+//        public void testRegistrasi(){
+//        String username = "ojik12";
+//        String password = "123456";
+//        String repassword= "123456";
+//        String Email = "ojik@gmail.com";
+//        boolean sama = HelperSamePass.getSamePassword(password, repassword);
+//        assertTrue(sama);
 //        
-//       assertNotNull (result); 
-//   }    
-    public void testRegistrasi(){
-        String username = "ojik";
-        String password = "123456";
-        String repassword= "123456";
+//        UserDAO udo = new UserDAOimpl();
+//        User u= new User();
+//        u.setNama(username);
+//        u.setPassword(HelperEncripsi.getSha256(password));
+//        u.setEmail(Email);
+//        boolean exist = udo.getExistUsername(username);
+//        if(exist==false){
+//            udo.insert(u);
+//            List<User> listuser = udo.getByAll();
+//            User expectResult = new User();
+//            for (User result : listuser){
+//                if(u.getUsername()== result.getUsername()){
+//                expectResult=result;
+//                break;
+//                }
+//            }
+//                assertSame(expectResult,u);
+//            
+//        }else{
+//            fail("username sudah ada");
+//        }
+//        
+//        
+//        
+//    }
+    //change password
+    @Test
+    public void ubahPass() throws NoSuchAlgorithmException{
+        long id =1L;
+        String password = "1234567";
+        String repassword = "1234568";
+        boolean sama = HelperSamePass.getSamePassword(password,repassword);
+        if (sama==false){
+            fail("password dan repassword tidak sama");
+            
+        }else{
+            UserDAO udo= new UserDAOimpl();
+            User u =udo.getById(id);
+            u.setPassword(password);
+            udo.update(u);
+            List<User> listuser= udo.getByAll();
+            User expectResult= new User();
+            for (User result : listuser){
+                if(u.getPassword()== result.getPassword()){
+                    expectResult=result;
+                    break;
+                }
+            }
+            assertSame("password berubah",expectResult,u);
+        }
         
     }
     
