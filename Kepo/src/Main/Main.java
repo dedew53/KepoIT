@@ -11,9 +11,11 @@ import DAO.UserDAO;
 import DAOimpl.AnswerDAOimpl;
 import DAOimpl.QuestionDAOimpl;
 import DAOimpl.UserDAOimpl;
+import Helper.HelperEncripsi;
 import Model.Answer;
 import Model.Question;
-import Model.User;
+import Model.Pengguna;
+import java.util.Date;
 
 /**
  *
@@ -21,37 +23,55 @@ import Model.User;
  */
 public class Main {
     public static void main(String[] args){
-//        UserDAO usdo = new UserDAOimpl();
-//        QuestionDAO qdao = new QuestionDAOimpl();
-//        AnswerDAO adao = new AnswerDAOimpl();
-//        
-//        
-//        User u = new User();
+        UserDAO usdo = new UserDAOimpl();
+        QuestionDAO qdao = new QuestionDAOimpl();
+        AnswerDAO adao = new AnswerDAOimpl();
+        
+        
+//        Pengguna u = new Pengguna();
 //        Question q = new Question();
 //        Answer a = new Answer();
-//        
-//       
-//        u.setNama("ojik");
-//        u.setPassword("123456");
-//        u.setEmail("ojik@gmail.com");
-//        u.setUsername("ojik12");
+        
+          // Insert Register
+//        u.setNama("ishaq fakhrozi");
+//        u.setPassword(HelperEncripsi.getSha256("123456"));
+//        u.setEmail("Ojik2@gmail.com");
+//        u.setUsername("ojik123");
 //        usdo.insert(u);
 
-        System.out.println("getLogin");
-        String Username="ojik12";
-        String Password="123456";
-        UserDAOimpl instance = new UserDAOimpl();
-        User result = instance.getLogin(Username,Password);
-        
-        System.out.println(result.getId()); 
-        
-         // Tambah clap di user
+        //Insert Question
+//        Pengguna us = usdo.getById(1);
+//        q.setClapQuestion(10);
+//        q.setPosting("Ojik ganteng sekali");
+//        q.setTitle("bagus");
+//        q.setTglQuestion(new Date());
+//        q.setUser(us);
+//        qdao.insert(q);
+
+          //Insert Answer
+//          Pengguna us= usdo.getById(1);
+//          Question qu = qdao.getById(1);
+//          a.setClapAnswer(15);
+//          a.setPostKoment("Keren");
+//          a.setTglAnswer(new Date());
+//          a.setUser(us);
+//          a.setQuestion(qu);
+//          adao.insert(a);
+
+        // Tambah clap di user
 //        Answer a = adao.getById(1);
 //        Question q = qdao.getById(1);
-//        User u = usdo.getById(1);
+//        Pengguna u = usdo.getById(1);
 //        u.setRating(a.getClapAnswer()+q.getClapQuestion());
 //        usdo.tambahclap(u);
+
+
+
+ 
+ 
+
+        
         
     }
-    
 }
+
