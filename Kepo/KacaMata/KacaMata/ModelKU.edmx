@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="ModelKU.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="ModelKUTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelKU" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelKUContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Reseps" EntityType="ModelKU.Resep" />
+          <EntitySet Name="Ahlis" EntityType="ModelKU.Ahli" />
+          <EntitySet Name="Data_Pasien" EntityType="ModelKU.Data_Pasien" />
+          <EntitySet Name="Barangs" EntityType="ModelKU.Barang" />
+          <AssociationSet Name="Data_PasienResep" Association="ModelKU.Data_PasienResep">
+            <End Role="Data_Pasien" EntitySet="Data_Pasien" />
+            <End Role="Resep" EntitySet="Reseps" />
+          </AssociationSet>
+          <AssociationSet Name="Data_PasienAhli" Association="ModelKU.Data_PasienAhli">
+            <End Role="Data_Pasien" EntitySet="Data_Pasien" />
+            <End Role="Ahli" EntitySet="Ahlis" />
+          </AssociationSet>
+          <EntitySet Name="Pemesanans" EntityType="ModelKU.Pemesanan" />
+          <AssociationSet Name="PemesananBarang" Association="ModelKU.PemesananBarang">
+            <End Role="Pemesanan" EntitySet="Pemesanans" />
+            <End Role="Barang" EntitySet="Barangs" />
+          </AssociationSet>
+          <AssociationSet Name="Data_PasienPemesanan" Association="ModelKU.Data_PasienPemesanan">
+            <End Role="Data_Pasien" EntitySet="Data_Pasien" />
+            <End Role="Pemesanan" EntitySet="Pemesanans" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Resep">
+          <Key>
+            <PropertyRef Name="Id_Resep" />
+          </Key>
+          <Property Name="Id_Resep" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_resep" Type="String" Nullable="false" />
+          <NavigationProperty Name="Data_Pasien" Relationship="ModelKU.Data_PasienResep" FromRole="Resep" ToRole="Data_Pasien" />
+        </EntityType>
+        <EntityType Name="Ahli">
+          <Key>
+            <PropertyRef Name="Id_Ahli" />
+          </Key>
+          <Property Name="Id_Ahli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama_Ahli" Type="String" Nullable="false" />
+          <NavigationProperty Name="Data_Pasien" Relationship="ModelKU.Data_PasienAhli" FromRole="Ahli" ToRole="Data_Pasien" />
+        </EntityType>
+        <EntityType Name="Data_Pasien">
+          <Key>
+            <PropertyRef Name="Id_Pasien" />
+          </Key>
+          <Property Name="Id_Pasien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama" Type="String" Nullable="false" />
+          <Property Name="Alamat" Type="String" Nullable="false" />
+          <Property Name="Handphone" Type="Int32" Nullable="false" />
+          <Property Name="Jadwal_Tes_Berikut" Type="String" Nullable="false" />
+          <Property Name="Tanggal_Order_Trakhir" Type="DateTime" Nullable="false" />
+          <Property Name="Jumlah_Transaksi_Terakhir" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Reseps" Relationship="ModelKU.Data_PasienResep" FromRole="Data_Pasien" ToRole="Resep" />
+          <NavigationProperty Name="Ahlis" Relationship="ModelKU.Data_PasienAhli" FromRole="Data_Pasien" ToRole="Ahli" />
+          <NavigationProperty Name="Pemesanans" Relationship="ModelKU.Data_PasienPemesanan" FromRole="Data_Pasien" ToRole="Pemesanan" />
+        </EntityType>
+        <EntityType Name="Barang">
+          <Key>
+            <PropertyRef Name="Id_Barang" />
+          </Key>
+          <Property Name="Id_Barang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Deskripsi" Type="String" Nullable="false" />
+          <Property Name="Harga" Type="Int32" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pemesanan" Relationship="ModelKU.PemesananBarang" FromRole="Barang" ToRole="Pemesanan" />
+        </EntityType>
+        <Association Name="Data_PasienResep">
+          <End Type="ModelKU.Data_Pasien" Role="Data_Pasien" Multiplicity="1" />
+          <End Type="ModelKU.Resep" Role="Resep" Multiplicity="*" />
+        </Association>
+        <Association Name="Data_PasienAhli">
+          <End Type="ModelKU.Data_Pasien" Role="Data_Pasien" Multiplicity="1" />
+          <End Type="ModelKU.Ahli" Role="Ahli" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Pemesanan">
+          <Key>
+            <PropertyRef Name="Id_Pemesanan" />
+          </Key>
+          <Property Name="Id_Pemesanan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Pasien" Type="Int32" Nullable="false" />
+          <Property Name="Nama" Type="String" Nullable="false" />
+          <Property Name="Alamat" Type="String" Nullable="false" />
+          <Property Name="Tanggal" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Barangs" Relationship="ModelKU.PemesananBarang" FromRole="Pemesanan" ToRole="Barang" />
+          <NavigationProperty Name="Data_Pasien" Relationship="ModelKU.Data_PasienPemesanan" FromRole="Pemesanan" ToRole="Data_Pasien" />
+        </EntityType>
+        <Association Name="PemesananBarang">
+          <End Type="ModelKU.Pemesanan" Role="Pemesanan" Multiplicity="1" />
+          <End Type="ModelKU.Barang" Role="Barang" Multiplicity="*" />
+        </Association>
+        <Association Name="Data_PasienPemesanan">
+          <End Type="ModelKU.Data_Pasien" Role="Data_Pasien" Multiplicity="1" />
+          <End Type="ModelKU.Pemesanan" Role="Pemesanan" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="ModelKU" />
+        <Alias Key="Target" Value="ModelKU.Store" />
+        <EntityContainerMapping CdmEntityContainer="ModelKUContainer" StorageEntityContainer="ModelKUTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
