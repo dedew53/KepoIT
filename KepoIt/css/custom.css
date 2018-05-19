@@ -1,6 +1,7 @@
 /* Halaman Login dan Register */
 .r1 {
 	background-color: #24a8f4;
+    margin-bottom: 0px;
 	
 }
 .r2 {
@@ -98,6 +99,7 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
+    border-radius: 20px;
 }
 
 button:hover {
@@ -138,7 +140,7 @@ span.psw {
     top: 0;
     width: 100%; 
     height: 100%; 
-    overflow: auto; 
+    
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4); 
     padding-top: 60px;
@@ -148,7 +150,7 @@ span.psw {
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto 15% auto; 
-    width: 80%; 
+    width: 100%; 
 }
 
 /* The Close Button (x) */
@@ -225,8 +227,8 @@ button[type=question]{
     font-size: 30px
 }
 .right-sidebar{
-    float: right;
-    overflow: hidden;
+    
+   
     background: url("../image/divider.png") repeat-y left ;  
 }
 .left-sidebar{
@@ -263,7 +265,7 @@ hr{
     
 }
 .logo>img{
-    width: 10%;
+    width: 30%;
 }
 
 .gly {  margin-bottom: 10px;margin-right: 10px;}
@@ -309,4 +311,19 @@ body{
 /* komen */
 .copy{
     margin-bottom: 30px;
+}
+.r5 ul li span{
+    width: 57px;
+    height: 46px;
+    display: block;
+    text-align: center;
+    line-height: 3.3;
+    margin-bottom: 15px;
+    border: 1.8px solid #3498db;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+header .row .navbar{
+    margin-bottom: 0;
 }
