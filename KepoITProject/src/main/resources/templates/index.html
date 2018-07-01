@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="fragments/Head">
+   
+  </head>
+  <body>
+    <div class="container-fluid">
+        <header >
+            <div class="row ">
+              <nav class="navbar r1">
+                <div class="container-fluid">
+                  <div class="navbar-header logo">
+                    <img src="image/kepo1.png" alt="">
+                  </div>
+                
+               
+       <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">Already have an account?</p></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+         
+          
+      <ul id="login-dp" class="dropdown-menu">
+        <li>
+           <div class="row">
+              <div class="col-md-12">
+                Login via
+                <div class="social-buttons">
+                  <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                  <a href="#" class="btn btn-tw"><i class="fa fa-google-plus"></i> Gmail</a>
+                </div>
+                                or
+                 <form class="form" role="form" th:action="@{Home}" method="POST" accept-charset="UTF-8" id="login-nav">
+                    <div class="form-group">
+                       <label class="sr-only" for="username">Username</label>
+                       <input type="text" class="form-control" id="username" placeholder="Username" name="username" required/>
+                    </div>
+                    <div class="form-group">
+                       <label class="sr-only" for="password">Password</label>
+                       <input type="password" class="form-control" id="password" placeholder="Password" name="password" required/>
+                                    <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                    </div>
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    </div>
+                    <div class="checkbox">
+                       <label>
+                       <input type="checkbox"> keep me logged-in
+                       </label>
+                    </div>
+                 </form>
+              </div>
+              
+           </div>
+        </li>
+      </ul>
+     
+                </div>
+              </nav>
+             
+            </div>
+
+        </header><!-- /header -->
+		   <div class="row r2">
+    		<div class="col-md-8">
+    			<img class="imgregis" src="image/register.png" alt=""/>
+    		</div>
+    		<div class="col-md-4 kanan">
+    			<form method="post" th:action="ValidasiEmail" name="isiRegister">
+		          	<h3>Form Register</h3>
+				     <div class="form-group">
+					<input type="text" name="nama" id="nama" placeholder="Fullname" class="form-control "required/>
+                         <span style="color:red" id="validateuser"></span>
+					<input type="text" name="username" id="username1" placeholder="Username" class="form-control"required/>
+
+                    <div data-tip="Password must contain 8 charachters, including english lower/upper case letter (a-z) and at least one number(0-9)">
+					<input type="password" name="password" id="pass" placeholder="Password" class="form-control" required/>
+                    </div>
+					<input type="password" name="re_password" id="re_pass" placeholder="Re-Type Password" class="form-control" onChange="isPasswordMatch();" required/>
+					<input type="email" name="email" id="email" placeholder="Email" class="form-control" required/>
+					<br>	
+					</div>
+					<button type="submit" class="btn btn-primary" id="submit">Register</button>	
+		        </form>
+    		</div>
+    	</div>
+ 
+    </div>
+   
+    	
+    
+	<footer th:replace="fragments/footer">
+	</footer>
+
+
+  <script>
+      var password = document.getElementById("pass")
+          , confirm_password = document.getElementById("re_pass");
+
+      function validatePassword(){
+          if(password.value != confirm_password.value) {
+              confirm_password.setCustomValidity("Passwords Don't Match");
+          } else {
+              confirm_password.setCustomValidity('');
+          }
+      }
+      password.onchange = validatePassword;
+      confirm_password.onkeyup = validatePassword;
+  </script>
+
+    <script>
+        jQuery(document).ready(function($) {
+            $("#username1").keyup(function(){
+                $.get("/API/isUserExist?username="+$(this).val(),function(hasil){
+                    if (!hasil){
+                        $("#validateuser").text("username tersedia");
+                    }else{
+                        $("#validateuser").text("Username telah terpakai");
+                    }
+                });
+            });
+            $("#search-form").submit(function(event) {
+
+                // Disble the search button
+                enableSearchButton(false);
+
+                // Prevent the form from submitting via the browser.
+                event.preventDefault();
+
+                searchViaAjax();
+
+            });
+
+        });
+
+        function searchViaAjax() {
+
+            var search = {}
+            search["username"] = $("#username").val();
+            search["email"] = $("#email").val();
+
+            $.ajax({
+                type : "KEYUP",
+                contentType : "application/json",
+                url : "${home}search/api/getSearchResult",
+                data : JSON.stringify(search),
+                dataType : 'json',
+                timeout : 100000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+                    display(data);
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                    display(e);
+                },
+                done : function(e) {
+                    console.log("DONE");
+                    enableSearchButton(true);
+                }
+            });
+
+        }
+
+        function enableSearchButton(flag) {
+            $("#btn-search").prop("disabled", flag);
+        }
+
+        function display(data) {
+            var json = "<h4>Ajax Response</h4><pre>"
+                + JSON.stringify(data, null, 4) + "</pre>";
+            $('#feedback').html(json);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+ <head th:replace="fragments/Head">
+   
+  </head>
+  <body onload="myFunction()" style="margin:0;">
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="container-fluid">
+       <header lang="en" th:replace="fragments/Header"></header>
+    </div>
+    <div  class="container-fluid" >
+        <div  class="row">
+          <div  class="col-md-2">
+             <div th:replace="fragments/menu"></div>	
+      </div>
+ 
+  <div class="col-md-8 tengah ">
+          <div class="container">
+            <div class="col-md-9">
+              <h3>Beranda Profile</h3>
+              <hr>
+              <div class="container">
+              	<div class="row">
+              		<div class="col-md-3">
+              			<img th:src="'image/'+${penggunaaktif.getFotoProfil()}" alt="" class="img-rounded img-responsive" style="" />
+              		</div>
+              		<div class="col-md-3">
+              			<h2 th:text=${penggunaaktif.username}></h2>
+              			<p>Newbie</p>
+              			<hr>
+              			   <div class="btn-group">
+
+                                        <a href="" title="" data-toggle="modal" data-target="#myModal1">Ubah Password</a>
+
+                                        <div class="container">
+
+                                              <!-- Modal -->
+                                              <div class="modal fade" id="myModal1" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                  <!-- Modal content-->
+                                                  <div class="modal-content">
+
+                                                    <div class="modal-body" style="padding:40px 50px;">
+                                                      <form method="post" action="ubahPassword" th:object=${penggunaaktif}>
+								                            <div class="row charity-profil-text m-t-20">
+
+								                                <div class="col-md-7 charity-profil-input">
+								                                <input type="hidden" style="width: 100%;" th:value=${penggunaaktif.id}/></div>
+																<div class="col-md-4 p-l-30 m-r-10"><b>Password Sekarang</b></div>
+																<input type="text" style="width: 100%"  >
+								                            </div>
+								                            <div class="row charity-profil-text">
+								                                <div class="col-md-4 p-l-30 m-r-10"><b>Password Baru</b></div>
+								                                <div class="col-md-7 charity-profil-input"><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password" id="password" style="width: 100%;" title="Password must contain 8 charachters, including english lower/upper case letter (a-z) and at least one number(0-9)" required/></div>
+								                            </div>
+								                            <div class="row charity-profil-text">
+								                                <div class="col-md-4 p-l-30 m-r-10"><b>Konfirmasi Password Baru</b>
+								                                
+								                                </div>
+								                                <div class="col-md-7 charity-profil-input">
+								                                <input type="password" name="repassword" id="repassword"  required/></div>   
+								                            </div>
+								                           <div class="charity-btn-profil">
+								                                <button class="charity-btn-profil-save" type="submit"><b>Save</b></button>
+								                            </div>
+								                        </form>    
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+
+                                                    </div>
+                                                  </div>
+
+                                                </div>
+                                              </div>
+                                            </div>
+                                    
+                                  
+                                         
+                                    </div>
+
+              			
+              		</div>
+              		<div class="col-md-3">
+              			
+              			<a href="UbahProfil.html" title=""><i class="fa fa-user" aria-hidden="true"></i> Edit Profil</a>
+              		</div>
+              	</div>
+               
+              </div>
+              <div class="container">
+              	<div class="row">
+              		<nav class="navbar navbar-default ">
+					  <div class="container-fluid">
+					    <ul class="nav navbar-nav">
+					      <li class="active"><a href="#">About me</a></li>
+
+					      	
+					    </ul>
+					  </div>
+					</nav>
+              		
+              	</div>
+              	<div class="container" style="">
+              		<div class="row" >
+              			
+              				<div class="dalam2" style="border-left:5px solid;border-color: blue; margin-left: 5px; background-color: grey; ">
+							<p>Personal Informasi</p>
+						</div>
+							Nama : <p th:text=${penggunaaktif.nama}></p>
+							Tanggal Lahir : <p>01 Oktober 1993</p>
+							Alamat :<p th:text="${penggunaaktif.alamat}"></p>
+							No.Hp : <p th:text="${penggunaaktif.noHp}"></p>
+						<div class="dalam2" style="border-left:5px solid;border-color: blue; margin-left: 5px; background-color: grey;">
+							<p >Rating</p>
+						</div>
+						<p th:text="${penggunaaktif.rating}"></p>
+						<div class="dalam2" style="border-left:5px solid;border-color: blue; margin-left: 5px; background-color: grey; ">
+							<p>Email</p>
+						</div>
+						<p th:text="${penggunaaktif.email}"></p>
+              		
+              			
+              		</div>
+              		
+              	</div>
+              	
+              </div>
+            </div>
+            <div class="col-md-3">
+              
+            </div>
+          </div>
+      </div>
+   
+
+  
+   <div class="col-md-2  right-sidebar">
+     
+        
+      <div th:replace="fragments/right-sidebar"></div>
+     
+   
+    </div>
+</div>     
+ </div>
+
+     <footer th:replace="fragments/footer">
+	</footer>
+   
+    
+
+    </div>
+  </body>
+</html>
+ 

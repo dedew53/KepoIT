@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="fragments/Head">
+   
+  </head>
+  <body onload="myFunction()" style="margin:0;">
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="container-fluid">
+         <header lang="en" th:replace="fragments/Header"></header>
+    </div>
+    <div  class="container-fluid">
+        <div  class="row">
+          <div  class="col-md-2">
+               <div th:replace="fragments/menu"></div>	
+      </div>
+    
+    <div class="col-md-8">
+        <h2>Question</h2>
+      
+        <div class="container">
+          <div class="row">
+             
+            <div class="row">
+             <div class="col-md-8 ">
+           <ul>
+                <li><h3 class="h33" th:text=${question.title}></h3>
+              <p class="p1" th:text=${question.posting}></p></li>
+            </ul>
+          </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-3">
+                         <p><i class="fa fa-user" th:text="${penggunaaktif.username}"> </i></p>
+                      </div>
+                        <div class="col-md-3">
+                         <p><i class="fa fa-hashtag"> Java</i></p>
+                      </div>
+                      <div  class="col-md-3">
+                         <p> <i class="fa fa-clock-o" th:text="${question.tgl_question}"></i> </p> 
+                      </div>
+                       <div  class="col-md-3">
+                         <p> <i class="fa fa-question"></i> Question</p>
+                      </div>
+                    </div>
+                  </div>
+               
+                </div>
+                
+              </div>
+            </div>
+
+     
+        </div>
+      
+    </div>
+   
+
+  </div>
+   <div class="col-md-2  right-sidebar">
+     
+        
+      
+         <ul>
+            <h3>User</h3> 
+            <li>
+              <p>3000</p>
+              
+            </li>
+          
+            <h3>Total Pertanyaan</h3>
+            <li>
+             <p>2740</p> 
+            </li>
+          </ul>
+          <hr/>
+          <img src="http://placehold.it/250x300" alt="" class="img-rounded img-responsive" />
+          <p>Pasang Iklan Hubungin Kami di KepoIT.com</p>
+     
+   
+    </div>
+</div>  
+</div>   
+  
+
+     <footer th:replace="fragments/footer">
+	</footer>
+	</div>
+  </body>
+</html>

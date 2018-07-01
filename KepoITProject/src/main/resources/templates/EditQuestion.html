@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head th:replace="fragments/Head">
+   
+  </head>
+  <body onload="myFunction()" style="margin:0;">
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="container-fluid">
+        <header lang="en" th:replace="fragments/Header"></header>
+    </div>
+    <div  class="container-fluid" >
+        <div  class="row">
+          <div  class="col-md-2">
+               <div th:replace="fragments/menu"></div>	
+      </div>
+     
+    
+    <div class="col-md-8">
+        <h2>Edit Question</h2>
+      
+        <div class="container">
+          <div class="row">
+             
+            <div class="row">
+             <div class="col-md-8">
+             
+           <ul >
+          	<form method="post">
+                <div>
+          		<input type ="hidden" class="form-control" name="id" th:value="${question.id}"/>
+                <label for="">Title</label>
+          		<input type ="text" class="form-control" name="title" th:value="${question.title}"/>
+                    <div class="form-group">
+                        <label for="">Masukan Pertanyaan</label>
+
+                    </div>
+                    <div >
+                        <textarea  id="txtEditor" name="posting" style="width: 100%;" cols="10" rows="10" th:text="${question.posting}"> </textarea>
+                    </div>
+                </div>
+                <input type="text" th:value="${question.tgl_question}">
+          		<button type="submit" style="width: 20%">Save</button>
+          	</form>
+            
+            </ul>
+          </div>
+
+            </div>
+
+            
+
+               
+                </div><!-- /row -->
+
+                
+           </div><!-- /container -->
+
+          </div>
+            <div class="col-md-2  right-sidebar">
+
+
+
+                <div th:replace="fragments/right-sidebar"></div>
+
+
+            </div>
+        </div>
+       
+      
+    </div>
+   
+
+  
+
+
+    <footer th:replace="fragments/footer">
+	</footer>
+	</div>
+  </body>
+</html>

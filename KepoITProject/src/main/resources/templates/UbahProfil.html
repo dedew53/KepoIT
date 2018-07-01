@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+ <head th:replace="fragments/Head">
+   
+  </head>
+ <body onload="myFunction()" style="margin:0;">
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="container-fluid">
+       <header lang="en" th:replace="fragments/Header"></header>
+    </div>
+    <div  class="container-fluid">
+        <div  class="row">
+          <div  class="col-md-2">
+             <div th:replace="fragments/menu"></div>	
+      </div>
+ 
+  <div class="col-md-8 tengah ">
+          <div class="container">
+             <div class="col-md-8">
+              <form method="post" class="form-group" action="UbahProfil" enctype="multipart/form-data">
+                  <h2>Ubah Data Diri</h2>
+                  <br/>
+                  <input th:value="${penggunaaktif.id}" name="idPengguna" type="hidden">
+
+                <div>
+	              	<img th:src="'image/'+${penggunaaktif.getFotoProfil()}" alt="" class="img-rounded img-responsive" style="" />
+	                <input type="file" name="foto" accept="image/*"/>
+				</div>	
+               <br>	
+               <div>
+                   <input th:value="${penggunaaktif.password}" name="password" type="hidden">
+                   <input th:value="${penggunaaktif.email}" name="email" type="hidden">
+                   <input th:value="${penggunaaktif.username}" name="username" type="hidden">
+	              <label for="">Nama Lengkap Anda</label>   
+	              <input type ="text" class="form-control" name="nama" th:value="${penggunaaktif.nama}" />
+
+	              <label for="">Alamat</label>
+	              <input type ="text" class="form-control" name="alamat" th:value="${penggunaaktif.alamat}" />
+	               <label for="">No.Hp</label>
+	              <input type ="text" class="form-control" name="nohp" th:value="${penggunaaktif.noHp}" />
+
+
+	               <button type="submit" style="width:20%">Save</button>
+               </div>	
+            </form>
+           
+              </div>
+           
+              <div class="col-md-4">
+                
+              </div>
+          </div>
+      </div>
+   
+
+  
+   <div class="col-md-2  right-sidebar">
+     
+        
+      <div th:replace="fragments/right-sidebar"></div>
+     
+   
+    </div>
+</div> 
+</div>    
+  
+
+    <footer th:replace="fragments/footer">
+	</footer>
+	</div>
+  </body>
+</html>
+ 
